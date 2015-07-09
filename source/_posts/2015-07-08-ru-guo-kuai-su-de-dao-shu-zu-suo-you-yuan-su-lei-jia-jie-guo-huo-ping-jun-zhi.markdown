@@ -6,12 +6,13 @@ comments: true
 categories: iOS
 ---
 
-
+```objc
 	NSArray *values = @[@72, @78, @75, @70, @72, @73, @77, @78, @75, @70, @72, @73, @87, @78, @75, @70, @72];
 	NSNumber *avg = [values valueForKeyPath:@"@avg.self"];
 	NSNumber *sum = [values valueForKeyPath:@“@sum.self"];
 	NSNumber *max = [values valueForKeyPath:@"@max.self"];
     NSNumber *min = [values valueForKeyPath:@"@min.self"];
+```
 
 more:
 https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/CollectionOperators.html
