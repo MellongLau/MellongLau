@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "如果快速得到数组所有元素累加结果或平均值"
+title: "如何快速得到数组所有元素累加结果，平均值和最大最小值"
 date: 2015-07-08 23:26:59 +0800
 comments: true
 categories: iOS
