@@ -1,3 +1,51 @@
+
+#Setup Octopress
+
+	git clone git://github.com/imathis/octopress.git octopress
+
+	cd octopress
+	
+Next, install dependencies.
+
+	gem install bundler
+	rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
+	bundle install
+	
+Install the default Octopress theme.
+
+	rake install
+	
+#Blog Posts
+
+	rake new_post["title"]
+	
+	
+You can add a single category or multiple categories like this.
+
+	# One category
+	categories: Sass
+	 
+	# Multiple categories example 1
+	categories: [CSS3, Sass, Media Queries]
+	 
+	# Multiple categories example 2
+	categories:
+	- CSS3
+	- Sass
+	- Media Queries
+	
+Inserting a <!-- more --> comment into your post will prevent the post content below this mark from being displayed on the index page for the blog posts, a "Continue →" button links to the full post.
+
+
+
+#Generate & Preview
+
+	rake generate   # Generates posts and pages into the public directory
+	rake watch      # Watches source/ and sass/ for changes and regenerates
+	rake preview    # Watches, and mounts a webserver at http://localhost:4000
+
+
+
 ## Octopress 3.0
 
 Note: Octopress 3.0 is in development at https://github.com/octopress/octopress
