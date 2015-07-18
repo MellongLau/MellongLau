@@ -20,14 +20,15 @@ categories: pi
 4. `树莓派`
 5. `L298N电机驱动板模块`
 6. `红外避障模块和超声波测距模块`，如果想做避障功能就需要买这个传感器，买两个（开始的时候不知道，我只买了一个红外避障模块...）。
+7. `USB无线网卡`
 
-上面的花费下来，不计树莓派和移动电源，大概花了90元左右。
+上面的花费下来，不计树莓派、USB无线网卡和移动电源，大概花了90元左右。
 
 #材料组装
 ===
 
 ##小车底盘
-材料到手之后，先组织车底盘，安装说明书把第一层组装好，马达连线见下图，线我是用杜邦线一分为二去接的。
+材料到手之后，先组装车底盘，安装说明书把第一层组装好，马达连线见下图，线我是用杜邦线一分为二去接的。
 
 ![image](/blogImages/car_01.jpg)
 
@@ -35,11 +36,12 @@ categories: pi
 
 ##与L298N驱动模块连线
 
-	占位
+模块两边有各有两个out接口分布连接两边马达，四个IN接口连接树莓派的四个GPIO接口，连上后记得自己连接的接口编号就可以，写代码的时候需要。
 
 ##供电
 
-	占位
+我使用之前买的移动电源供电，自带有两个USB接口，一个接树莓派，一个接L298N驱动模块。也可以自己买电池盒进行串联供电。
+接模块的电源我使用usb线剪的，其中黑线是接地，红线接VCC。
 
 #遥控程序
 ===
@@ -52,19 +54,70 @@ categories: pi
 web版可以直接使用王恒的版本：
 [https://github.com/wujiwh/piCar](https://github.com/wujiwh/piCar)
 
+主要修改自己接的GPIO接口和对应的方向。
+
 ###iOS版
 简单写了iOS客户端，服务端是用王恒的版本改的：
-[https://github.com/](https://github.com/)等待上传
+[RaspiCar](https://github.com/MellongLau/RaspiCar)
 
 ###自动避障版
 由于只买了一个红外避障模块，于是只能单边避障，这里是代码：
 
-	占位
-	
+```python
+#!/user/bin/env python
+ 
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+GPIO.setup(11,GPIO.OUT)
+GPIO.setup(12,GPIO.OUT)
+GPIO.setup(15,GPIO.OUT)
+GPIO.setup(16,GPIO.OUT)
+GPIO.setup(7,GPIO.IN)
+
+def t_stop():
+	GPIO.output(11, False)
+	GPIO.output(12, False)
+	GPIO.output(15, False)
+	GPIO.output(16, False)
+
+def t_down():
+	GPIO.output(11, True)
+	GPIO.output(12, False)
+	GPIO.output(15, True)
+	GPIO.output(16, False)
+
+def t_up():
+	GPIO.output(11, False)
+	GPIO.output(12, True)
+	GPIO.output(15, False)
+	GPIO.output(16, True)
+
+def t_right():
+	GPIO.output(11, False)
+	GPIO.output(12, True)
+	GPIO.output(15, True)
+	GPIO.output(16, False)
+
+def t_left():
+	GPIO.output(11, True)
+	GPIO.output(12, False)
+	GPIO.output(15, False)
+	GPIO.output(16, True)
+
+
+while True:
+    in_right= GPIO.input(7)
+    if in_right == False:
+    	t_left()
+    else:
+   		t_up()
+```
+
+
+
 #最后
 ====
 完成效果图：
 
 ![image](/blogImages/car_02.jpg)
-
-未完待续...
