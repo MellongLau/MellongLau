@@ -12,6 +12,11 @@ categories: pi
 
 其实之前也有听说可以做很多有趣的东西，我最感兴趣就是做个遥控小车，一直有这个想法，就是没有实际行动。最近在网上又看到类似的遥控车，突然间又来了兴致，这次决心很大，立即就找了下资料，并且在淘宝上买了配件。趁着周末有时间，花了半天时间组装好了，又花了半天改了程序支持自动避障，还做了个iPad/iPhone的手机端遥控app。自己又是摆道具又是录视频的，忙得不亦乐乎。废话少说，现在进入正题！
 
+##视频效果
+
+这是后来做的加了三路寻轨功能的视频，后面文章会继续介绍：
+<embed src="http://player.youku.com/player.php/sid/XMTI4Nzk0NjMyOA==/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+
 #需要的材料
 ===
 1. `树莓派小车底盘`，这个上淘宝一搜一大堆，我买的四驱的，有带亚克力两层车板。
